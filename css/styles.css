@@ -1,0 +1,325 @@
+:root {
+    --primary-green: #28a745;
+    --dark-green: #1e7e34;
+    --light-green: #d4edda;
+    --pig-pink: #f8d7da;
+    --brown: #8b4513;
+}
+
+body {
+    background: linear-gradient(135deg, #f5f7fa 0%, #e4efe9 100%);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.card {
+    border-radius: 15px;
+    border: none;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+}
+
+.card-header {
+    background: linear-gradient(135deg, var(--primary-green) 0%, var(--dark-green) 100%);
+    border-bottom: none;
+}
+
+.icon-circle {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid var(--primary-green);
+}
+
+.form-control:focus {
+    border-color: var(--primary-green);
+    box-shadow: 0 0 0 0.25rem rgba(40, 167, 69, 0.25);
+}
+
+.btn-success {
+    background: linear-gradient(135deg, var(--primary-green) 0%, var(--dark-green) 100%);
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.btn-success:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(40, 167, 69, 0.4);
+}
+
+.input-group-text {
+    background-color: var(--light-green);
+    border-color: var(--primary-green);
+}
+
+.alert {
+    border-radius: 10px;
+    animation: slideIn 0.5s ease;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.btn-outline-success {
+    border-color: var(--primary-green);
+    color: var(--primary-green);
+}
+
+.btn-outline-success:hover {
+    background-color: var(--primary-green);
+    color: white;
+}
+
+/* Animaciones para formularios */
+.animate__animated.animate__fadeIn {
+    animation-duration: 0.8s;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .card {
+        margin: 1rem;
+    }
+    
+    .icon-circle {
+        width: 60px;
+        height: 60px;
+    }
+}
+
+/* Efectos de hover para elementos interactivos */
+.form-control, .btn {
+    transition: all 0.3s ease;
+}
+
+.form-control:hover {
+    border-color: #20c997;
+}
+
+/* Efectos hover para tarjetas */
+.hover-card {
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.hover-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Botones de navegación rápida */
+.btn-outline-success:hover, .btn-outline-success:focus {
+    background-color: #28a745;
+    color: white;
+    transform: scale(1.05);
+}
+
+.btn-outline-primary:hover, .btn-outline-primary:focus {
+    background-color: #007bff;
+    color: white;
+    transform: scale(1.05);
+}
+
+.btn-outline-warning:hover, .btn-outline-warning:focus {
+    background-color: #ffc107;
+    color: white;
+    transform: scale(1.05);
+}
+
+.btn-outline-info:hover, .btn-outline-info:focus {
+    background-color: #17a2b8;
+    color: white;
+    transform: scale(1.05);
+}
+
+.btn-outline-danger:hover, .btn-outline-danger:focus {
+    background-color: #dc3545;
+    color: white;
+    transform: scale(1.05);
+}
+
+.btn-outline-secondary:hover, .btn-outline-secondary:focus {
+    background-color: #6c757d;
+    color: white;
+    transform: scale(1.05);
+}
+
+/* Transiciones suaves */
+.btn {
+    transition: all 0.3s ease;
+}
+
+/* Badge mejorados */
+.badge {
+    font-size: 0.9em;
+    padding: 0.5em 0.7em;
+}
+
+/* Animaciones para la sección de cerdos */
+.animate-row {
+    transition: all 0.5s ease;
+}
+
+.animate-row:hover {
+    transform: translateX(5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.search-box {
+    position: relative;
+}
+
+.search-box .input-group {
+    border-radius: 50px;
+    overflow: hidden;
+}
+
+.search-box .form-control {
+    border-right: none;
+}
+
+.search-box .btn {
+    border-left: none;
+}
+
+/* Modal animations */
+.modal-content {
+    animation: modalSlideIn 0.3s ease;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Form animations */
+.animate-form {
+    animation: formFadeIn 0.5s ease;
+}
+
+@keyframes formFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Button hover effects */
+.btn {
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* Card hover effects */
+.card {
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+/* Table row hover */
+.table-hover tbody tr:hover {
+    background-color: rgba(40, 167, 69, 0.05);
+}
+
+/* Badge animations */
+.badge {
+    transition: all 0.3s ease;
+}
+
+.badge:hover {
+    transform: scale(1.1);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .cerdo-row td {
+        font-size: 0.85rem;
+    }
+    
+    .btn-group .btn {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.8rem;
+    }
+}
+
+.currency-cop {
+    font-weight: 600;
+    color: #28a745;
+}
+
+.currency-cop::before {
+    content: '$';
+}
+
+.currency-cop::after {
+    content: ' COP';
+}
+
+.badge.bg-success, .badge.bg-primary, .badge.bg-warning, .badge.bg-info, .badge.bg-danger {
+    font-size: 0.85em;
+    font-weight: 600;
+}
+
+/* Animación para valores monetarios */
+.currency-value {
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.currency-value:hover {
+    transform: scale(1.05);
+    color: #1e7e34;
+}
+
+/* Estilo para inputs de moneda */
+input[name="preciocompra"] {
+    font-weight: 600;
+    color: #28a745;
+}
+
+input[name="preciocompra"]::placeholder {
+    color: #6c757d;
+    font-style: italic;
+}

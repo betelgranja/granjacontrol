@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entrando a la Granja...</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            background: linear-gradient(135deg, #e4efe9 0%, #f5f7fa 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+        }
+        .fullscreen-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100vw;
+            position: relative;
+            overflow: hidden;
+        }
+        .content {
+            text-align: center;
+            z-index: 10;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            animation: fadeInScale 1s ease-out;
+        }
+        .farm-name {
+            color: #28a745;
+            font-weight: 700;
+            margin-top: 1rem;
+            animation: textGlow 2s infinite alternate;
+        }
+        .loading-text {
+            color: #6c757d;
+            font-size: 1.2rem;
+            margin-top: 1rem;
+            height: 30px; /* Altura fija para evitar salto */
+        }
+        .pig-icon {
+            font-size: 4rem;
+            color: #28a745;
+            margin-bottom: 1rem;
+            animation: bounce 2s infinite;
+        }
+        .progress-container {
+            width: 300px;
+            height: 8px;
+            background-color: #e9ecef;
+            border-radius: 4px;
+            margin: 1.5rem auto;
+            overflow: hidden;
+        }
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #28a745, #20c997);
+            width: 0%;
+            border-radius: 4px;
+            transition: width 4s linear;
+            animation: progressGlow 2s infinite alternate;
+        }
+        /* Animaciones */
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        @keyframes textGlow {
+            from { text-shadow: 0 0 5px #28a745; }
+            to { text-shadow: 0 0 15px #28a745, 0 0 25px #20c997; }
+        }
+        @keyframes progressGlow {
+            from { box-shadow: 0 0 5px rgba(40, 167, 69, 0.5); }
+            to { box-shadow: 0 0 15px rgba(40, 167, 69, 0.8); }
+        }
+        @keyframes fadeInOut {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+        .grass {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 100px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" fill="%2328a745"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" fill="%2328a745"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" fill="%2328a745"/></svg>');
+            background-size: cover;
+            background-repeat: no-repeat;
+            z-index: 1;
+        }
+        .sun {
+            position: absolute;
+            top: 20%;
+            right: 10%;
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle, #ffc107, #fd7e14);
+            border-radius: 50%;
+            box-shadow: 0 0 40px #ffc107;
+            animation: sunGlow 3s infinite alternate;
+        }
+        @keyframes sunGlow {
+            from { box-shadow: 0 0 40px #ffc107; }
+            to { box-shadow: 0 0 60px #ffc107, 0 0 80px #fd7e14; }
+        }
+        .cloud {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+            animation: cloudFloat 20s infinite linear;
+        }
+        .cloud:nth-child(1) { width: 60px; height: 20px; top: 15%; left: -100px; animation-duration: 25s; }
+        .cloud:nth-child(2) { width: 80px; height: 30px; top: 25%; left: -100px; animation-duration: 30s; opacity: 0.8; }
+        .cloud:nth-child(3) { width: 100px; height: 35px; top: 10%; left: -100px; animation-duration: 35s; }
+        @keyframes cloudFloat {
+            to { transform: translateX(calc(100vw + 200px)); }
+        }
+    </style>
+</head>
+<body>
+    <div class="fullscreen-container">
+        <!-- Elementos decorativos -->
+        <div class="sun"></div>
+        <div class="cloud"></div>
+        <div class="cloud"></div>
+        <div class="cloud"></div>
+        <div class="grass"></div>
+        
+        <div class="content">
+            <div class="pig-icon">
+                <i class="fas fa-piggy-bank"></i>
+            </div>
+            <h1 class="farm-name" id="farmName">Granja Porcina</h1>
+            <div class="loading-text" id="loadingText">
+                <span id="dynamicText">Preparando el corral...</span>
+            </div>
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+            <small class="text-muted">Cargando experiencia ganadera</small>
+        </div>
+    </div>
+
+    <script>
+        // Array de mensajes para mostrar durante la carga
+        const loadingMessages = [
+            "Preparando el corral...",
+            "Alimentando a los cerdos...",
+            "Revisando vacunas...",
+            "Calculando ganancias...",
+            "Entrando a la granja..."
+        ];
+
+        // Elementos del DOM
+        const farmNameElement = document.getElementById('farmName');
+        const loadingTextElement = document.getElementById('dynamicText');
+        const progressBar = document.getElementById('progressBar');
+
+        // Función para obtener el nombre de la granja (simulación)
+        // En una implementación real, esto vendría de una API
+        function getFarmName() {
+            // Simulamos una llamada a un endpoint que obtiene el nombre
+            // En este caso, como es una página estática, usamos localStorage
+            // o un valor por defecto
+            
+            // Intentar obtener de localStorage (simulando datos guardados)
+            const savedName = localStorage.getItem('farmName');
+            if (savedName) {
+                return Promise.resolve(savedName);
+            }
+            
+            // Simular una llamada a API (en este caso, devolvemos un valor por defecto)
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    // En una implementación real, aquí harías:
+                    // fetch('/api/configuracion')
+                    //   .then(response => response.json())
+                    //   .then(data => resolve(data.nombre || 'Granja Porcina'))
+                    //   .catch(() => resolve('Granja Porcina'));
+                    
+                    resolve('Granja Porcina'); // Valor por defecto
+                }, 500);
+            });
+        }
+
+        // Función para cambiar mensajes de carga
+        function changeLoadingMessage() {
+            let index = 0;
+            const interval = setInterval(() => {
+                loadingTextElement.textContent = loadingMessages[index];
+                index = (index + 1) % loadingMessages.length;
+            }, 800);
+            
+            // Detener el cambio de mensajes cuando termine la carga
+            setTimeout(() => clearInterval(interval), 4000);
+        }
+
+        // Inicializar la página
+        document.addEventListener('DOMContentLoaded', async function() {
+            // Obtener el nombre de la granja
+            const farmName = await getFarmName();
+            farmNameElement.textContent = farmName;
+            
+            // Iniciar animaciones
+            progressBar.style.width = '100%';
+            changeLoadingMessage();
+            
+            // Redirigir después de 4 segundos
+            setTimeout(() => {
+                window.location.href = 'index.php?direct=1';
+            }, 4000);
+        });
+    </script>
+</body>
+</html>
